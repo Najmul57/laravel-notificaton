@@ -7,9 +7,15 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
 
 Route::get('notificatioin',function(){
-    $user =User::find(1);
+    // $user =User::find(1);
     // $user->notify(new EmailNotification());
-    Notification::send($user, new EmailNotification());
+    // Notification::send($user, new EmailNotification());
+
+    $users = User::all();
+    foreach($users as $user){
+        Notification::send($user, new EmailNotification());
+    }
+
     return redirect()->back();
 });
 
